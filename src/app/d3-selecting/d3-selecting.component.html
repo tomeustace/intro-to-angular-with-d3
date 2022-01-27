@@ -1,0 +1,78 @@
+<div class="grid-container" id="grid">
+  <mat-grid-list cols="3" rowHeight="400px">
+    <mat-grid-tile colspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            d3 Selecting
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">
+  d3.select('#grid')
+    .selectAll('mat-grid-tile')
+    .style('background-color', this.colors[this.count]);
+</code>
+          </pre>
+          <button mat-raised-button (click)="changeTileColor()">Run</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+    <!-- <mat-grid-tile [colspan]="1" [rowspan]="2"> -->
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            SVG transforms
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+<pre>
+<code class="language-js">  selectAll('rect').attr("transform", "translate(15, 0)");// translate x
+  selectAll('rect').attr("transform", "translate(15, 15)");// translate y
+  selectAll('rect').attr("transform", "scale(.9)");// scale
+  selectAll('rect').attr("transform", "rotate(5)");// rotate
+  selectAll('rect').attr("transform", "skewY(10)");// skewY (also skewX) </code>
+</pre>
+          <svg width="600" height="100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="100" y="20" width="50" height="50" style="fill:red; stroke-width:3; stroke:rgb(0,0,0)" />
+          </svg>
+          <div style="display: flex; flex-flow: row nowrap;">
+            <button mat-raised-button (click)="translateRectX()">Translate X</button>
+            <button mat-raised-button (click)="translateRectY()">Translate Y</button>
+            <button mat-raised-button (click)="scaleRect()">Scale</button>
+            <button mat-raised-button (click)="rotateRect()">Rotate</button>
+            <button mat-raised-button (click)="skewRect()">Skew</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            d3 Filtering
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+<pre>
+<code class="language-js">selectAll('g > rect').filter(() => {{ '{' }}
+  return !select(this).node().getAttribute('style').includes('green');
+{{ '}' }}).style('fill', () => this.colors[this.count]);
+</code></pre>
+          <svg width="600" height="100" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <rect x="0" y="20" width="50" height="50" style="fill:blue; stroke-width:3; stroke:rgb(0,0,0)" />
+              <rect x="60" y="20" width="50" height="50" style="fill:green; stroke-width:3; stroke:rgb(0,0,0)" />
+              <rect x="120" y="20" width="50" height="50" style="fill:green; stroke-width:3; stroke:rgb(0,0,0)" />
+              <rect x="180" y="20" width="50" height="50" style="fill:blue; stroke-width:3; stroke:rgb(0,0,0)" />
+            </g>
+          </svg>
+          <button mat-raised-button (click)="changeColor()">Change Blue</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

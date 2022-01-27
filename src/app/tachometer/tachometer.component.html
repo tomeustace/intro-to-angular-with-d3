@@ -1,0 +1,92 @@
+<div class="grid-container">
+  <h1 class="mat-h1"></h1>
+  <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Tachometer
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+          <q>
+            Even if you run the same JavaScript, on the same browser, on the same machine, on the same day, you'll still
+            get a different result every time. But if you take enough repeated samples and apply the right statistics,
+            you can reliably identify even tiny differences in runtime.
+          </q>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Running Benchmarks
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-card-content>
+          <p>Alter builds (A / B) with varying algorithms/packages etc to test against.</p>
+          <ul>
+            <li>ng build --output-path=dist/appA</li>
+            <li>ng build --output-path=dist/appB</li>
+            <li>serve -p 3000, serve -p 3001</li>
+            <li>tachometer --config benchmarks.json</li>
+            <li>load trace logs chrome://tracing</li>
+          </ul>
+          <p>Swap NPM dependencies</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            benchmarks.json
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">
+{{ '{' }}
+  "$schema": "https://raw.githubusercontent.com/Polymer/tachometer/master/config.schema.json",
+  "sampleSize": 10,
+  "benchmarks": [
+    {{ '{' }}
+      "name": "appA",
+      "url": "http://localhost:3000",
+      "browser": {{ '{' }}
+        "name": "chrome",
+        "trace": true,
+      {{ '}' }},
+      "measurement": {{ '{' }}
+        "mode": "performance",
+        "entryName": "my-measure"
+      {{ '}' }}
+    {{ '}' }},
+    {{ '{' }}
+      "name": "appB",
+      "url": "http://localhost:3001",
+      "browser": {{ '{' }}
+        "name": "chrome",
+        "trace": true,
+      {{ '}' }},
+      "measurement": {{ '{' }}
+        "mode": "performance",
+        "entryName": "my-measure"
+    {{ '}' }},
+  {{ '}' }},
+  ]
+{{ '}' }},
+</code>
+          </pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+      <img src="./../../assets/images/tachometer.png" />
+      <!-- <img width="100%" height="400px" src="./../../assets/images/tachometer.png" /> -->
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
