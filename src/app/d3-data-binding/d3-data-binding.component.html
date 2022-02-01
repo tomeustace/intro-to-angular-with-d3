@@ -4,7 +4,42 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Binding data to shapes
+             Selections and Binding
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">const arr = [1, 2, 3, 4, 5];
+select('.card1')
+  .selectAll('button')
+  .data(arr)
+  .enter()
+  .append('button')
+  .text(d => d);
+</code></pre>
+
+          <div class="card1"></div>
+<pre>
+<code class="language-js">select('.card1')
+  .select('button')
+  .data();// [1]
+
+select('.card1')
+  .selectAll('button')
+  .data();//[1,2,3,4,5]
+
+select('.card1')
+  .selectAll('button')
+  .nodes();//[button, button, ..., button]
+</code></pre>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Binding data to elements (New data enters)
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -18,16 +53,16 @@
 </code></pre>
 
 <pre><code class="language-js">const kittieSelection = select("#kitty-svg")
-      .selectAll('circle')
-      .data(this.kitties);
+    .selectAll('circle')
+    .data(this.kitties); // bind data to shapes
 </code></pre>
 <pre><code class="language-js">kittieSelection
-      .enter()
-      .append('circle')
-      .attr('fill', (kitty) => kitty.color)
-      .attr('cx', (kitty) => kitty.age * 25)
-      .attr('cy', 30)
-      .attr('r', 40);
+    .enter() // add new elements
+    .append('circle')
+    .attr('fill', (kitty) => kitty.color)
+    .attr('cx', (kitty) => kitty.age * 25)
+    .attr('cy', 30)
+    .attr('r', 40);
       </code></pre>
           <svg width="400" height="300" id="kitty-svg" xmlns="http://www.w3.org/2000/svg">
           </svg>
@@ -36,17 +71,36 @@
       </mat-card>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-grid-tile colspan="1" rowspan="2">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            d3 Filtering
+            Remove bound data (Bound data exits)
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <!-- <svg width="400" height="100" id="kitty-svg" xmlns="http://www.w3.org/2000/svg">
-          </svg> -->
-          <!-- <button mat-raised-button (click)="changeColor()">Change Blue</button> -->
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">const kitties = [
+  {{ '{' }} name: 'Mittens', age: 1, color: 'gray', {{ '}' }},
+  {{ '{' }} name: 'Fluffy', age: 3, color: 'orange' {{ '}' }},
+  {{ '{' }} name: 'Spike', age: 5, color: 'black' {{ '}' }}
+  {{ '{' }} name: 'Bob', age: 6, color: 'blue' {{ '}' }}
+];
+</code></pre>
+
+<pre><code class="language-js">const kittieSelection = select("#kitty-svg")
+    .selectAll('circle')
+    .data(this.kitties.filter((kitty) => {{'{'}}
+      return kitty.age >= 3;
+    {{'}'}}));
+</code></pre>
+<pre><code class="language-js">kittieSelection
+    .exit()
+    .remove();
+      </code></pre>
+          <svg width="400" height="300" id="kitty-svg1" xmlns="http://www.w3.org/2000/svg">
+          </svg>
+          <!-- <button mat-raised-button (click)="changeTileColor()">Run</button> -->
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

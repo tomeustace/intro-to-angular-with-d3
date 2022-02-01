@@ -29,11 +29,11 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
 <pre>
-<code class="language-js">  selectAll('rect').attr("transform", "translate(15, 0)");// translate x
-  selectAll('rect').attr("transform", "translate(15, 15)");// translate y
-  selectAll('rect').attr("transform", "scale(.9)");// scale
-  selectAll('rect').attr("transform", "rotate(5)");// rotate
-  selectAll('rect').attr("transform", "skewY(10)");// skewY (also skewX) </code>
+<code class="language-js">  d3.selectAll('rect').attr("transform", "translate(15, 0)");// translate x
+  d3.selectAll('rect').attr("transform", "translate(15, 15)");// translate y
+  d3.selectAll('rect').attr("transform", "scale(.9)");// scale
+  d3.selectAll('rect').attr("transform", "rotate(5)");// rotate
+  d3.selectAll('rect').attr("transform", "skewY(10)");// skewY (also skewX) </code>
 </pre>
           <svg width="600" height="100" xmlns="http://www.w3.org/2000/svg">
               <rect x="100" y="20" width="50" height="50" style="fill:red; stroke-width:3; stroke:rgb(0,0,0)" />
@@ -58,7 +58,7 @@
         </mat-card-header>
         <mat-card-content>
 <pre>
-<code class="language-js">selectAll('g > rect').filter(() => {{ '{' }}
+<code class="language-js">d3.selectAll('g > rect').filter(() => {{ '{' }}
   return !select(this).node().getAttribute('style').includes('green');
 {{ '}' }}).style('fill', () => this.colors[this.count]);
 </code></pre>

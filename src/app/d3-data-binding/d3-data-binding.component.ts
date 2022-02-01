@@ -42,10 +42,20 @@ export class D3DataBindingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const arr = [1, 2, 3, 4, 5];
+    select('.card1').selectAll('button').data(arr).enter().append('button').text(d => d);
+    const d = select('.card1').select('button').data();
+    const data = select('.card1').selectAll('button').data();
+    const nodes = select('.card1').selectAll('button').nodes();
+    console.log(d);
+    console.log(data);
+    console.log(nodes);
+
     const kittieSelection = select("#kitty-svg")
       .selectAll('circle')
       .data(this.kitties);
-    console.log(kittieSelection);
+
+    console.log("kittieSelection", kittieSelection);
 
     kittieSelection
       .enter()
@@ -54,8 +64,24 @@ export class D3DataBindingComponent implements OnInit {
       .attr('cx', (kitty) => kitty.age * 40)
       .attr('cy', 100)
       .attr('r', 40);
-      // .attr('cy', (d) => d.age * 10)
-      // .attr('r', (d) => d.age * 2);
+
+    const kittieSelection1 = select("#kitty-svg1")
+      .selectAll('circle')
+      .data(this.kitties);
+
+    kittieSelection1
+      .enter()
+      .append('circle')
+      .attr('fill', (kitty) => kitty.color)
+      .attr('cx', (kitty) => kitty.age * 40)
+      .attr('cy', 100)
+      .attr('r', 40);
+
+    select('#kitty-svg1')
+      .selectAll('circle')
+      .data(this.kitties.filter((kitty) => kitty.age >= 3))
+      .exit()
+      .remove();
   }
 
   ngAfterViewInit(): void {
