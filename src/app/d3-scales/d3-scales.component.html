@@ -1,14 +1,46 @@
 <div class="grid-container" id="grid">
-  <mat-grid-list cols="3" rowHeight="400px">
+  <mat-grid-list cols="3" rowHeight="450px">
     <mat-grid-tile colspan="1" rowspan="2">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Scale Ordinal
+            Scale Linear
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div class="scale-ordinal"></div>
+          <pre>
+<code class="language-js"> const linear = scaleLinear()
+        .domain([0, 1000])
+        .range([0, 500]);
+
+    linear(0); // -> 0
+    linear(500); // -> 250
+    linear(1000); // -> 500
+    linear.invert(500); // -> 1000
+</code></pre>
+
+          <pre>
+<code class="language-js">select('#linear-x')
+      .selectAll('rect')
+      .data([100,150,300,400,430])
+      .enter()
+      .append('rect')
+      .attr('x', (d) => linear(d))
+</code></pre>
+
+          <svg width="500" height="40" id="linear-x"></svg>
+
+          <pre>
+<code class="language-js">select('#linear-y')
+      .selectAll('rect')
+      .data([30,50,100,140,180])
+      .enter().append('rect')
+      .attr('y', (d) => linear(d))
+      .attr('x', (d) => linear(d))
+</code></pre>
+
+          <svg width="500" id="linear-y"></svg>
+
         </mat-card-content>
         <mat-card-content class="dashboard-card-content">
           <div class="scale-linear"></div>
@@ -19,13 +51,31 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Binding data to elements (New data enters)
+            Scale Ordinal
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <pre>
-<code class="language-js">const kitties = [ ];
+<code class="language-js">const names = ['bob', 'tara', 'tim', 'sue', 'chip'];
+const scaleNames = scaleOrdinal()
+  .domain(names)
+  .range(['red', 'green', 'blue', 'orange', 'purple']);
+
+const scale = scaleOrdinal()
+  .domain(names)
+  .range(['red', 'green']);
 </code></pre>
+          <pre>
+<code class="language-js">select(".scale-ordinal")
+      .selectAll('div')
+      .data(names).enter()
+      .append('div')
+      .style('background-color', (d) => scaleNames(d))
+      .text((d) => d)
+      .style('color', 'white')
+      .style('margin', '2px');
+</code></pre>
+          <div class="scale-ordinal"></div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -34,13 +84,42 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Remove bound data (Bound data exits)
+            Scale Time
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">const dates = [new Date(2022, 0, 1), new Date(2022, 0, 2)];
+const timeScale = scaleTime()
+  .domain(dates)
+  .range([0, 500]);
+
+timeScale(new Date(2022, 0, 1)); // 0
+timeScale(new Date(2022, 0, 1, 12)); // 250
+timeScale(new Date(2022, 0, 2)); // 500
+timeScale.invert(0); // Sat Jan 01 2022 00:00:00 GMT-0000 (GMT)
+timeScale.invert(250); // Sat Jan 01 2022 12:00:00 GMT-0000 (GMT)
+timeScale.invert(500); // Sat Jan 02 2022 00:00:00 GMT-0000 (GMT)
+</code></pre>
+
+          <pre>
+<code class="language-js">select('#time-x')
+.selectAll('circle')
+.data([
+  new Date(2022, 0, 1, 2),
+  new Date(2022, 0, 1, 5),
+  new Date(2022, 0, 1, 10)
+])
+.enter()
+.append('circle')
+.attr('r', 20)
+.attr('cy', 50)
+.attr('cx', (d) => timeScale(d));
+</code> </pre>
+
+          <svg width="500" height="140" id="time-x"></svg>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-

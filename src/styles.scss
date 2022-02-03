@@ -41,3 +41,20 @@ $my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-cus
     color: white;
   }
 }
+
+// d3-scales
+#linear-x rect {
+  width: 20px;
+  height: 20px;
+  fill: blue;
+}
+#linear-y rect {
+  width: 20px;
+  height: 20px;
+  fill: green;
+}
+#time-x circle {
+  width: 20px;
+  height: 20px;
+  fill: purple;
+}
