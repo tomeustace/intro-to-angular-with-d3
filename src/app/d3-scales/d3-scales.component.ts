@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { scaleOrdinal, scaleLinear, scaleTime } from 'd3-scale';
 import { select, selectAll } from 'd3-selection';
+import { HighlightService } from '../highlight.service';
 
 @Component({
   selector: 'app-d3-scales',
@@ -9,7 +10,7 @@ import { select, selectAll } from 'd3-selection';
 })
 export class D3ScalesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private highlightService: HighlightService) { }
 
   ngOnInit(): void {
     const names = ['bob', 'tara', 'tim', 'sue', 'chip'];
@@ -66,12 +67,12 @@ export class D3ScalesComponent implements OnInit {
       .domain(dates)
       .range([0, 500]);
 
-  console.log(timeScale(new Date(2022, 0, 1))); // 0
-  console.log(timeScale(new Date(2022, 0, 1, 12))); // 250
-  console.log(timeScale(new Date(2022, 0, 2))); // 500
-  console.log(timeScale.invert(0)); // Sat Jan 01 2022 00:00:00 GMT-0000 (GMT)
-  console.log(timeScale.invert(250)); // Sat Jan 01 2022 12:00:00 GMT-0000 (GMT)
-  console.log(timeScale.invert(500)); // Sat Jan 02 2022 00:00:00 GMT-0000 (GMT)
+    timeScale(new Date(2022, 0, 1)); // 0
+    timeScale(new Date(2022, 0, 1, 12)); // 250
+    timeScale(new Date(2022, 0, 2)); // 500
+    timeScale.invert(0); // Sat Jan 01 2022 00:00:00 GMT-0000 (GMT)
+    timeScale.invert(250); // Sat Jan 01 2022 12:00:00 GMT-0000 (GMT)
+    timeScale.invert(500); // Sat Jan 02 2022 00:00:00 GMT-0000 (GMT)
 
     select('#time-x')
       .selectAll('circle')
@@ -99,5 +100,8 @@ export class D3ScalesComponent implements OnInit {
     // console.log(color.domain("harry")()); // "rgb(128, 192, 128)"
   }
 
+  ngAfterViewInit(): void {
+    this.highlightService.highlightAll();
+  }
 }
 

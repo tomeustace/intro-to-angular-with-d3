@@ -1,1 +1,51 @@
-<p>d3-bar-chart works!</p>
+<div class="grid-container" id="grid">
+  <mat-grid-list cols="3" rowHeight="450px">
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Y Axis (left and right)
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">
+</code></pre>
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content">
+          <svg id="bar-chart" width="500" height="500"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            X Axis (top and bottom)
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre><code class="language-js">
+</code></pre>
+          <svg width="300" height="400" id="axis-top-bottom"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Axis Time
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre><code class="language-js">
+</code></pre>
+          <svg width="350" height="300" id="time-axis"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

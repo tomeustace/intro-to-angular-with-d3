@@ -1,0 +1,103 @@
+<div class="grid-container" id="grid">
+  <mat-grid-list cols="3" rowHeight="450px">
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Y Axis (left and right)
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre>
+<code class="language-js">const linearVertical = scaleLinear()
+.domain([0, 500])
+.range([0, 200]);
+
+const left = axisLeft(linearVertical);
+left.ticks(3);
+select("#axis-left-right")
+  .append("g")
+  .attr("transform", "translate(35,30)")
+  .call(left);
+
+const right = axisRight(linearVertical);
+right.ticks(4);
+select("#axis-left-right")
+  .append("g")
+  .attr("transform", "translate(250,30)")
+  .call(right);
+</code></pre>
+        <svg width="300" height="350" id="axis-left-right"></svg>
+
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content">
+          <div class="scale-linear"></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            X Axis (top and bottom)
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre><code class="language-js">const linearHorizontal = scaleLinear()
+.domain([0, 500])
+.range([0, 250]);
+
+const top = axisTop(linearHorizontal);
+select("#axis-top-bottom")
+  .append("g")
+  .attr("transform", "translate(10,20)")
+  .call(top);
+
+const bottom = axisBottom(linearHorizontal);
+select("#axis-top-bottom")
+  .append("g")
+  .attr("transform", "translate(10,50)")
+  .call(bottom);
+</code></pre>
+          <svg width="300" height="400" id="axis-top-bottom"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Axis Time
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <pre><code class="language-js">const datesLeft = [new Date(2022, 0, 1), new Date(2022, 0, 7)];
+const timeScaleLeft = scaleTime()
+  .domain(datesLeft)
+  .range([0, 300]);
+
+const timeAxisLeft = axisLeft(timeScaleLeft);
+select("#time-axis")
+  .append("g")
+  .attr("transform", "translate(100,70)")
+  .call(timeAxisLeft);
+
+const dates = [new Date(2021, 0, 1), new Date(2022, 0, 1)];
+const timeScaleRight = scaleTime()
+  .domain(dates)
+  .range([0, 300]);
+
+const timeAxisRight = axisRight(timeScaleRight);
+select("#time-axis")
+  .append("g")
+  .attr("transform", "translate(150,70)")
+  .call(timeAxisRight);
+</code></pre>
+          <svg width="350" height="300" id="time-axis"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

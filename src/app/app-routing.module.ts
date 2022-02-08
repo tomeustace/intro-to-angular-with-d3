@@ -10,6 +10,7 @@ import { D3SelectingComponent } from './d3-selecting/d3-selecting.component';
 import { D3DataBindingComponent } from './d3-data-binding/d3-data-binding.component';
 import { D3ScalesComponent } from './d3-scales/d3-scales.component';
 import { D3BarChartComponent } from './d3-bar-chart/d3-bar-chart.component';
+import { D3AxisComponent } from './d3-axis/d3-axis.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   {
     path: 'd3-scales', component: D3ScalesComponent
+  },
+  {
+    path: 'd3-axis', component: D3AxisComponent
   },
   {
     path: 'd3-bar-chart', component: D3BarChartComponent
