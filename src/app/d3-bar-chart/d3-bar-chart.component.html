@@ -4,16 +4,40 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Y Axis (left and right)
+            Bar Chart
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <pre>
-<code class="language-js">
+<code class="language-js">data = [{{"{"}}name: "paul", age: 35{{"}"}}, {{"{"}}name: "sue", age: 80{{"}"}},...];
+const x = scaleBand()
+  .domain(this.data.map(d => d.name))
+  .range([0, this.width])
+  .padding(0.2);
+
+const y = scaleLinear()
+  .domain([this.height, 0])
+  .range([0, this.height]);
+
+select("#bar-chart")
+  .append("g")
+  .attr("transform", "translate(0," + this.height + ")")
+  .call(axisBottom(x));
+
+select('#bar-chart')
+  .selectAll('rect')
+  .data(this.data)
+  .enter()
+  .append('rect')
+      .attr("x", (d) => x(d.name))
+      .attr("width", x.bandwidth())
+      .attr("y", (d) => this.height- y(d.age))
+      .attr("height", (d) => +y(d.age))
+      .attr("fill", "steelblue");
 </code></pre>
         </mat-card-content>
         <mat-card-content class="dashboard-card-content">
-          <svg id="bar-chart" width="500" height="500"></svg>
+          <svg id="bar-chart-1" width="500" height="300"></svg>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -26,9 +50,32 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <pre><code class="language-js">
+          <pre><code class="language-js">select('#bar-chart-2')
+  .selectAll('rect')
+  .data(this.data)
+  .enter()
+  .append('rect')
+      .attr("x", (d) => x(d.name))
+      .attr("width", x.bandwidth())
+      .attr("y", (d) => this.height - y(d.age))
+      .attr("height", (d) => y(d.age))
+      .attr("fill", "steelblue")
+      .on("mouseover", function(d) {{ "{" }}
+        select(this).attr("fill", "red");
+      {{ "}"}})
+      .on("mouseout", function(d) {{ "{" }}
+        select(this).attr("fill", "green");
+      {{ "}"}});
+      .on("click", function(d) {{ "{" }}
+        d3.select(this)
+          .transition()
+          .duration(1000)
+          .attr("height", 0)
+          .attr("y", 200);
+      {{ "}"}});
 </code></pre>
-          <svg width="300" height="400" id="axis-top-bottom"></svg>
+          <button mat-raised-button (click)="drawBar2()">Redraw</button>
+          <svg id="bar-chart-2" width="500" height="300" ></svg>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
@@ -43,7 +90,8 @@
         <mat-card-content class="dashboard-card-content">
           <pre><code class="language-js">
 </code></pre>
-          <svg width="350" height="300" id="time-axis"></svg>
+          <button mat-raised-button (click)="drawBar2()">Redraw</button>
+          <svg id="bar-chart-3" width="500" height="300" ></svg>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
