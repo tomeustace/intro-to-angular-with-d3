@@ -1,0 +1,35 @@
+<div class="grid-container" id="grid">
+  <mat-grid-list cols="1" rowHeight="450px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Bar Chart
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+        </mat-card-content>
+        <mat-card-content class="dashboard-card-content">
+          <svg id="bar-chart-1" width="800" height="300"></svg>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Bar Chart Controls
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <button mat-raised-button (click)="drawChart()">Redraw</button>
+          <button mat-raised-button (click)="greaterThan(50)">> 50</button>
+          <button mat-raised-button (click)="lessThan(50)">< 50</button>
+          <button mat-raised-button (click)="drawChart(true)">Sort</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

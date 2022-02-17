@@ -46,7 +46,7 @@ select('#bar-chart')
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            X Axis (top and bottom)
+            Bar Chart Mouse Events
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -84,13 +84,30 @@ select('#bar-chart')
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Axis Time
+            Bar Chart Group Element
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <pre><code class="language-js">
+          <pre><code class="language-js">const barGroup = select('#bar-chart-3')
+  .selectAll('rect')
+  .data(this.data)
+  .enter()
+  .append('g');
+
+barGroup
+  .append('rect')
+    .attr("x", (d) => this.x(d.name) + margin.left)
+    .attr("width", this.x.bandwidth())
+    .attr("y", (d) => this.height - this.y(d.age))
+    .attr("height", (d) => this.y(d.age))
+    .attr("fill", "steelblue");
+barGroup
+  .append('text')
+    .text((d) => d.age)
+    .attr("fill", "white")
+    .attr("x", (d) => this.x(d.name) + margin.left + (this.x.bandwidth()/3))
+    .attr("y", (d) => this.height - this.y(d.age) + 15)
 </code></pre>
-          <button mat-raised-button (click)="drawBar2()">Redraw</button>
           <svg id="bar-chart-3" width="500" height="300" ></svg>
         </mat-card-content>
       </mat-card>

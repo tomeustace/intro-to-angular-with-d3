@@ -23,7 +23,9 @@ import { D3DataBindingComponent } from './d3-data-binding/d3-data-binding.compon
 import { ResourcesComponent } from './resources/resources.component';
 import { D3ScalesComponent } from './d3-scales/d3-scales.component';
 import { D3BarChartComponent } from './d3-bar-chart/d3-bar-chart.component';
+import { D3BarChartControlsComponent } from './d3-bar-chart-controls/d3-bar-chart-controls.component';
 import { D3AxisComponent } from './d3-axis/d3-axis.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { D3AxisComponent } from './d3-axis/d3-axis.component';
     ResourcesComponent,
     D3ScalesComponent,
     D3BarChartComponent,
+    D3BarChartControlsComponent,
     D3AxisComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

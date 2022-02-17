@@ -14,7 +14,7 @@ export class D3BarChartComponent implements OnInit {
 
   height = 200;
   width = 300;
-  data = [{name: "paul", age: 35},{name: "sue", age: 80}, {name: "fred", age: 5}, {name: "alice", age: 50}, {name: "bob", age: 90}, {name: "jane", age: 30}, {name: "john", age: 40}];
+  data = [{name: "paul", age: 35},{name: "sue", age: 80}, {name: "fred", age: 10}, {name: "alice", age: 50}, {name: "bob", age: 90}, {name: "jane", age: 30}, {name: "john", age: 40}];
 
   x = scaleBand()
     .domain(this.data.map(d => d.name))
@@ -22,7 +22,7 @@ export class D3BarChartComponent implements OnInit {
     .padding(0.2);
 
   y = scaleLinear()
-    .domain([0, 100])
+    .domain([100, 0])
     .range([this.height, 0]);
 
   constructor(private highlightService: HighlightService) { }
@@ -70,7 +70,7 @@ export class D3BarChartComponent implements OnInit {
           .attr("height", (d) => this.y(d.age))
           .attr("fill", "steelblue")
           .on("mouseover", function(d) {
-            select(this).transition().duration(1500).attr("fill", "red");
+            select(this).transition().duration(500).attr("fill", "red");
           })
           .on("mouseout", function(d) {
             select(this).attr("fill", "green");
@@ -88,30 +88,30 @@ export class D3BarChartComponent implements OnInit {
       .attr("transform", "translate(" + margin.left + "," + this.height + ")")
       .call(axisBottom(this.x));
 
-    select("#bar-chart-3")
-      .append("g")
-      .attr("transform", "translate(" + margin.left + ",0)")
-      .call(axisLeft(this.y));
+    // select("#bar-chart-3")
+    //   .append("g")
+    //   .attr("transform", "translate(" + margin.left + ",0)")
+    //   .call(axisLeft(this.y));
 
-    select('#bar-chart-3')
+    const barGroup = select('#bar-chart-3')
       .selectAll('rect')
       .data(this.data)
       .enter()
+      .append('g');
+
+    barGroup
       .append('rect')
           .attr("x", (d) => this.x(d.name) + margin.left)
           .attr("width", this.x.bandwidth())
           .attr("y", (d) => { return this.height - this.y(d.age); })
           .attr("height", (d) => this.y(d.age))
-          .attr("fill", "steelblue")
-          .on("mouseover", function(d) {
-            select(this).transition().duration(1500).attr("fill", "red");
-          })
-          .on("mouseout", function(d) {
-            select(this).attr("fill", "green");
-          })
-          .on("click", function(d) {
-            d3.select(this).transition().duration(1000).attr("height", 0).attr("y", 200);
-          });
+          .attr("fill", "steelblue");
+      barGroup
+          .append('text')
+            .text((d) => d.age)
+            .attr("fill", "white")
+            .attr("x", (d) => this.x(d.name) + margin.left + (this.x.bandwidth()/3))
+            .attr("y", (d) => { return this.height - this.y(d.age) + 15; })
 
   }
 }
