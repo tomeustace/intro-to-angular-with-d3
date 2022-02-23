@@ -25,29 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Tachometer
-
-npm i -g tachometer
-
-https://github.com/Polymer/tachometer
-
-> WON'T WORK WITH NG SERVE ON DIFFERENT PORTS
-
-ng build --output-path=dist/A
-ng build --output-path=dist/B
-
-copy dist to another directory
-
-run `serve -p 3000` on A 
-run `serve -p 3001` on B 
- 
-tachometer --config benchmarks.json
-
-If using WSL > ensure XLaunch (or similar) is running on desktop
-
-## Deploy
-
-ng build --output-path=public
-firebase deploy --only hosting
-https://measuring-web-app-perforance.web.app/dashboard
