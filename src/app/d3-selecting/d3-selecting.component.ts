@@ -51,11 +51,14 @@ export class D3SelectingComponent implements OnInit {
 
   changeColor() {
     this.count > 10 ? this.count = 0 : this.count++;
-    selectAll('g > rect').filter(function() {
+    const sel = selectAll('g > rect').filter(function() {
       const rects = selectAll('g > rect');
-      console.log("selectAll('g > rect')", rects);
+      // console.log("selectAll('g > rect')", rects);
       return !select(this).node().getAttribute('style').includes('green');
-    }).style('fill', () => this.colors[this.count]);
+    });
+    console.log(sel);
+    console.log(sel.nodes());
+    sel.style('fill', () => this.colors[this.count]);
   }
 
   randomNumber(min, max) {

@@ -16,6 +16,9 @@ select('.card1')
   .enter()
   .append('button')
   .text(d => d);
+
+//.join('circle') new syntax
+// for .enter().append()
 </code></pre>
 
           <div class="card1"></div>
@@ -54,7 +57,8 @@ select('.card1')
 
 <pre><code class="language-js">const kittieSelection = select("#kitty-svg")
     .selectAll('circle')
-    .data(this.kitties); // bind data to shapes
+    // bind data to shapes, key by name
+    .data(this.kitties, (d) => d.name);
 </code></pre>
 <pre><code class="language-js">kittieSelection
     .enter() // add new elements

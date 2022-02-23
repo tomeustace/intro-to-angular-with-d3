@@ -18,7 +18,7 @@
               <li> polygonline </li>
               <li> line </li>
             </ul>
-            <svg width="500" height="550" transform="scale(.6), translate(-90, -200)" xmlns="http://www.w3.org/2000/svg">
+            <svg width="500" height="550" transform="scale(.6), translate(-120, -200)" xmlns="http://www.w3.org/2000/svg">
                 <line x1="30" y1="30" x2="350" y2="290" style="stroke:rgb(255,0,0); stroke-width:3" />
                 <line x1="30" y1="50" x2="300" y2="350" style="stroke:grey; stroke-width:5" />
                 <rect x="60" y="100" width="70" height="40" rx="10" ry="10" style="fill:#778899; stroke:#FF4500; stroke- width:5; fill-opacity:0.7; stroke-opacity:0.6" />
@@ -39,7 +39,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Rectangle
+            Rectangle Attributes
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -66,7 +66,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Circle
+            Circle Attributes
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -100,7 +100,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Ellipse
+            Ellipse Attributes
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -127,7 +127,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Polygon (Closed Shapes)
+            Polygon  Attributes(Closed Shapes)
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -149,7 +149,7 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Polyline (Open Shapes)
+            Polyline  Attributes(Open Shapes)
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
@@ -170,19 +170,26 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            Path
+            Path Attributes
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div class="shapes">
             <ul>
-              <li> d </li>
+              <li> d (attribute) </li>
+              <ol>
+              <li><b>MoveTo:</b> M, m</li>
+              <li><b>LineTo:</b> L, l, H, h, V, v</li>
+              <li><b>Cubic Bézier Curve:</b> C, c, S, s</li>
+              <li><b>Quadratic Bézier Curve:</b> Q, q, T, t</li>
+              <li><b>lliptical Arc Curve:</b> A, a</li>
+              <li><b>ClosePath:</b> Z, z</li>
+              </ol>
               <li> pathLength</li>
             </ul>
-            <svg width="500" height="550" transform="scale(.6), translate(0, -200)" xmlns="http://www.w3.org/2000/svg">
+            <svg width="400" height="550" transform="scale(.6), translate(0, -200)" xmlns="http://www.w3.org/2000/svg">
 
-              <path d="M180 0 L75 200 L225 200 Z" fill="green" />
-              <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30"/>
+              <path d="M140 0 L75 140 L185 200 Z" fill="green" />
               <path transform="translate(0, 220)" d="M 10,30
                         A 20,20 0,0,1 50,30
                         A 20,20 0,0,1 90,30

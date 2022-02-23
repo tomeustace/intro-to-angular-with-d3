@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { select, selectAll } from 'd3-selection';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { scaleLinear, scaleBand } from 'd3-scale';
@@ -25,7 +25,10 @@ export class D3BarChartComponent implements OnInit {
     .domain([100, 0])
     .range([this.height, 0]);
 
-  constructor(private highlightService: HighlightService) { }
+  constructor(
+    private zone: NgZone,
+    private highlightService: HighlightService
+    ) { }
 
   ngOnInit(): void {
     select("#bar-chart-1")
@@ -45,7 +48,9 @@ export class D3BarChartComponent implements OnInit {
           .attr("fill", "steelblue");
 
           this.drawBar2();
-          this.drawBar3();
+          this.zone.runOutsideAngular(() => {
+            this.drawBar3();
+          });
   }
 
   ngAfterViewInit(): void {
@@ -62,8 +67,7 @@ export class D3BarChartComponent implements OnInit {
     select('#bar-chart-2')
       .selectAll('rect')
       .data(this.data)
-      .enter()
-      .append('rect')
+      .join('rect')
           .attr("x", (d) => this.x(d.name))
           .attr("width", this.x.bandwidth())
           .attr("y", (d) => { return this.height - this.y(d.age); })
@@ -105,7 +109,14 @@ export class D3BarChartComponent implements OnInit {
           .attr("width", this.x.bandwidth())
           .attr("y", (d) => { return this.height - this.y(d.age); })
           .attr("height", (d) => this.y(d.age))
-          .attr("fill", "steelblue");
+          .attr("fill", "steelblue")
+          .on("mouseover", function(d) {
+            select(this).transition().duration(500).attr("fill", "red");
+          })
+          .on("mouseout", function(d) {
+            select(this).attr("fill", "green");
+          });
+
       barGroup
           .append('text')
             .text((d) => d.age)

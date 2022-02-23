@@ -27,8 +27,7 @@ select("#bar-chart")
 select('#bar-chart')
   .selectAll('rect')
   .data(this.data)
-  .enter()
-  .append('rect')
+  .join('rect')
       .attr("x", (d) => x(d.name))
       .attr("width", x.bandwidth())
       .attr("y", (d) => this.height- y(d.age))
@@ -53,8 +52,7 @@ select('#bar-chart')
           <pre><code class="language-js">select('#bar-chart-2')
   .selectAll('rect')
   .data(this.data)
-  .enter()
-  .append('rect')
+  .join('rect')
       .attr("x", (d) => x(d.name))
       .attr("width", x.bandwidth())
       .attr("y", (d) => this.height - y(d.age))
@@ -109,6 +107,7 @@ barGroup
     .attr("y", (d) => this.height - this.y(d.age) + 15)
 </code></pre>
           <svg id="bar-chart-3" width="500" height="300" ></svg>
+          <p>profile - runOutsideAngular</p>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

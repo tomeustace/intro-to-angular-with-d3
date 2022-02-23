@@ -49,7 +49,7 @@
       </mat-card>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -58,9 +58,13 @@
         </mat-card-header>
         <mat-card-content>
 <pre>
-<code class="language-js">d3.selectAll('g > rect').filter(() => {{ '{' }}
-  return !select(this).node().getAttribute('style').includes('green');
-{{ '}' }}).style('fill', () => this.colors[this.count]);
+<code class="language-js">const selection = d3.selectAll('g > rect').filter(() => {{ '{' }}
+  return !select(this)
+    .node()
+    .getAttribute('style')
+    .includes('green');
+{{ '}' }});
+selection.style('fill', () => this.colors[this.count]);
 </code></pre>
           <svg width="600" height="100" xmlns="http://www.w3.org/2000/svg">
             <g>
@@ -71,6 +75,14 @@
             </g>
           </svg>
           <button mat-raised-button (click)="changeColor()">Change Blue</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <!-- <img style="position: absolute; bottom: 150px;" -->
+      <mat-card class="dashboard-card">
+        <mat-card-content>
+          <img style="" src="./../../assets/images/d3_selection.png"/>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
